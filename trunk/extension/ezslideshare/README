@@ -1,0 +1,70 @@
+=====================================================
+eZSlideshare, slideshare.net extension for eZ Publish
+=====================================================
+
+.. contents::
+
+:: 
+
+ Note : this README was written in RST format. You can easily transform it into HTML, for a better reading experience. Use this : http://docutils.sourceforge.net/
+
+What is this ?
+==============
+eZSlideshare lets you embed any http://slideshare.net presentation (and only that, for now) in an XML Block. Here is how slideshare.net defines itself : 
+
+"SlideShare is the best way to share presentations, documents and professional videos."
+
+Finished yet ?
+==============
+
+**No.** 
+
+**On the contrary.**
+
+eZSlideshare was thought of as an extensible eZPublish <--> slideshare.net toolkit, this is the reason why it was shared at an early stage on projects.ez.no (http://projects.ez.no/ezslideshare). Today, it only allows for simply embedding slideshare.net presentations, but can be extended to support the many other features supported by slideshare.net's API. 
+
+At your convenience, apply for membership to this project ( http://projects.ez.no/ezslideshare/team/members , right-column button once logged-in, reading "Register membership" ), and start hacking with me. **I love that**. 
+
+
+Installation
+============
+(cf INSTALL file at the root of this extension)
+
+Usage
+=====
+At this stage, embedding a slideshare.net presentation is proposed through a custom tag (see resources to learn more on this). When editing an object having an eZXMLText attribute (Rich Text datatype, XML Block), one sees the Online Editor, WYSIWYG editor based on TinyMCE, where one button reads : "<?>". Click it, it pops a dialog window. The first drop-down (select) in this pop-up lists the custom tags at disposal. Once eZSlideshare is installed, you should see en entry reading "Slideshare presentation". 
+
+.. image:: ./docs/Custom_tag_available.png
+
+Select it, and three attributes will show : 
+  1. Presentation url
+  2. Width
+  3. Height
+
+The first one is mandatory, the others are used to customie the dimensions of the embedded presentation. The default dimensions are instructed by the following template : ``design/standard/templates/content/datatype/view/ezxmltags/slideshare.tpl``, feel free to create an override for it, and then alter the values.
+
+The "Presentation url" must contain the concerned presentation's URL (meaning the one you see in your address bar). 
+
+Example : http://www.slideshare.net/pmd06c/exploring-privatecollective-business-models
+
+.. image:: ./docs/Entering_the_presentation_url_parameter.png
+
+
+The final result is an embedded slideshare.net presentation, with, on top of the content, all interesting tools : 
+* sharing options (social streams)
+* link to author's presentations' library
+
+Here is how it looks : 
+
+.. image:: ./docs/Embedded_presentation.png
+
+
+Resources
+=========
+* eZSlideshare project page, repository and forums for feedback : http://projects.ez.no/ezslideshare
+* slideshare.net API : http://www.slideshare.net/developers
+* eZ Publish Community : http://share.ez.no . A crowd of nearly 40 000 people, all levels, all types of usages of eZ Publish, but the same strong feeling of belonging. Step by there, say hi.
+* Custom tag concept : http://doc.ez.no/eZ-Publish/Technical-manual/4.x/Reference/Datatypes/XML-block/Custom-tags
+* Custom tag in the scope of the Online Editor : http://doc.ez.no/Extensions/Online-Editor/5.x/Usage/The-toolbar/The-Custom-tag-button 
+* Online Editor documentation : http://doc.ez.no/Extensions/Online-Editor/5.x
+* Template overrides, concepts : http://doc.ez.no/eZ-Publish/Technical-manual/4.4/Templates/The-template-override-system

@@ -1,0 +1,108 @@
+==========================================================================
+Installation guide - eZSlideshare, slideshare.net extension for eZ Publish
+==========================================================================
+
+.. contents::
+
+:: 
+
+ Note : this INSTALL file was written in RST format. You can easily transform it into HTML, for a better reading experience. Use this : http://docutils.sourceforge.net/
+
+:: 
+
+ The usage instructions are available in the README file, at the root of this extension.
+
+Prerequisites
+=============
+eZ Publish
+----------
+This extension was developed and tested on a 4.2 version, and should seamlessly work on any further version. We cannot guarantee that it works fine on prior versions, although there should not be any problem.
+You can download the eZ Publish Community Project here : http://share.ez.no/download
+
+Slideshare API key/share-secret pair
+------------------------------------
+Get your own API key/shared-secret pair by :
+ 1. Creating an account on http://www.slideshare.net/ if not already done
+ 2. Following the steps there : http://www.slideshare.net/developers/applyforapi
+
+
+Get a hold on it
+================
+This extension is available from the project's SVN repository : http://projects.ez.no/ezslideshare/subversion. Follow the instructions on this page.
+
+Once on your hard-drive, place the extension (or symlink it) inside the ``extension`` folder of your preferred eZ Publish instance.
+
+Enable the extension
+====================
+From the administration interface
+---------------------------------
+Navigate to the administration interface, then click the "Setup" top-menu entry, then the "Extensions" entry in the left-column menu.
+The ``ezslideshare`` extension should be listed, next to an unchecked checkbox. Check it, and click the "Apply changes" button.
+
+By editing site.ini.append.php
+------------------------------
+Spot the site.ini.append.php file where you are activating extensions (can be per siteaccess, or as a general override), and add the following : 
+
+:: 
+ 
+ [ExtensionSettings]
+ ... (other extensions being enabled)
+ ActiveExtensions[]=ezslideshare
+
+You are maybe enabling extensions per siteaccess. In your siteaccess' site.ini.append.php file : 
+
+:: 
+
+ [ExtensionSettings]
+ ... (other extensions being enabled for this siteaccess)
+ ActiveAccessExtensions[]=ezslideshare
+
+
+Regenerate the autoloads files. From the command line, at the root of your eZ Publish installation :
+
+:: 
+
+ $> php bin/php/ezpgenerateautoloads.php 
+
+
+Install your Slideshare API key/share-secret pair
+=================================================
+Create an override of the ``ezslideshare.ini.append.php`` file as a global or siteaccess override. Insert your key/shared-secret values in the corresponding configuration directive, as follows : 
+
+:: 
+
+ [SlideshareAPISettings]
+ APIKey=<my-key>
+ SharedSecret=<my-shared-secret>
+
+
+Clear caches
+============
+From the administration interface
+---------------------------------
+Navigate to the administration interface, then click the "Setup" top-menu entry, then the "Clear all caches" button, in the top box. 
+
+Bear in mind that this should not be done on a running, production instance. If you are in this case, clear the INI cache, then the Template cache, and you should be all set.  
+
+
+From the command line
+---------------------
+From the command line, at the root of your eZ Publish installation :
+
+:: 
+
+ $> php bin/php/ezcache.php -s<siteaccess_name> --clear-all
+ 
+Bear in mind that this should not be done on a running, production instance. If you are in this case, clear, the INI cache, then the Template cache, and you should be all set. Can be done as follows : 
+
+:: 
+
+ $> php bin/php/ezcache.php -s<siteaccess_name> --clear-tag=ini
+ $> php bin/php/ezcache.php -s<siteaccess_name> --clear-tag=template
+ 
+
+Issues
+======
+Step by on the project page and post in the forums for sharing feedback, ideas and/or issues : 
+http://projects.ez.no/ezslideshare
+  

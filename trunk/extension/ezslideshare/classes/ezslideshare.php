@@ -49,7 +49,8 @@ class eZSlideshare
     {
         $baseUrl = static::getUrlBase( 'get_slideshow' );
         $baseUrl .= "&slideshow_url={$presentationInformation['url']}";
-        if ( ( $response = file_get_contents( $baseUrl ) ) !== false )
+
+        if ( ( $response = eZHTTPTool::getDataByURL( $baseUrl ) ) !== false )
         {
             $xml = simplexml_load_string( $response );
             $embedCode = $xml->Embed . '';

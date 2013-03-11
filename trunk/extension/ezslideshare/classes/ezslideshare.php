@@ -31,7 +31,7 @@ class eZSlideshare
           DEFAULT_WIDTH  = 425;
 
     protected static $apiUrls = array(
-        'get_slideshow' => 'http://www.slideshare.net/api/2/get_slideshow'
+        'get_slideshow' => 'https://www.slideshare.net/api/2/get_slideshow'
                                      );
 
     /**
